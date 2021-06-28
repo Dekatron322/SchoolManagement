@@ -1,0 +1,185 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+{% block page_title %}{{page_title}}{% endblock page_title %}
+
+{% block content %}
+
+<section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+          	<div class="card card-primary card-outline">
+
+            	<div class="card-header">
+                                                             
+                <h3 class="card-title col-3"><img class=" img-bordered-sm" src="https://www.graphicsprings.com/filestorage/stencils/a85b7c149ea786ceeac77c4fa7fd7a56.png?width=500&height=500" height="125px" width="125px" alt="user image"></h3>
+
+                <h1 class="card-title col-9" style="font-size: 30px; font-weight: 900; text-align: center;  color: #842bd7">CEDAR INTERNATIONAL SECONDARY SCHOOL</h1>
+                <br>
+                <h3 class="card-title col-9" style="font-size: 25px; text-align: center; font-weight: 900">BYAZHIN KUBWA-ABUJA, FCT.</h3><br>
+                <h5 class="card-title col-9" style="text-align: center;">Tel: 08139145923, 08039696853</h5>
+                <h5 class="card-title col-9" style="text-align: center; color: #842bd7">Motto: Education for Harmony</h5>
+                
+              </div>
+
+
+              <div class="card-header card-primary card-outline" style="background-color: #842bd7; color: #fff"><span>
+                <h3 class="card-title col-6">Scores: {{ totals }}</h3>
+                
+                <h3 class="card-title">Scores: {{averagescore}}</h3>
+
+                </span>
+              </div>
+              <!-- /.card-header -->
+              
+
+              <div class="card-body">
+              	<div class="post">
+                      <div class="user-block">
+                {% if staff.profile_pic == ""  %}
+                 <h3 class="card-title col-3"><img class=" img-bordered-sm" src="https://www.graphicsprings.com/filestorage/stencils/a85b7c149ea786ceeac77c4fa7fd7a56.png?width=500&height=500" height="125px" width="125px" alt="user image"></h3>
+                {% else %}  
+                   <img class="img-bordered-sm" src="{{students.profile_pic}}" height="125px" width="125px" alt="user image">
+                {% endif %}
+                        <span class="username">
+                          <div class="row">
+                <!-- accepted payments column -->
+                <div class="col-6 ">
+                  <p class="lead">Surname: {{ students.last_name }}</p>
+                  <p class="lead">Class: {{ students.student.course.name }}</p>
+                  <p class="lead">Session: {{ students.student.session.start_year }}/ {{ students.student.session.end_year }}</p>
+                  
+                </div>
+                <!-- /.col -->
+                <div class="col-4">
+                  <p class="lead">Firstname: {{ students.first_name }}</p>
+                  <p class="lead">Average: {{ total_in_class }}</p>
+ 				  <p class="lead">Term: {{ students.student.session.term }}</p>
+                </div>
+                <!-- /.col -->
+              </div>
+                        </span>
+                       
+                      </div>
+                      <!-- /.user-block -->
+
+                     
+                <table id="example2" class="table table-bordered table-responsive table-hover card-primary card-outline">
+                    <thead>
+                        <tr>
+                            <th>SN</th>
+                            <th>Subjects</th>
+                            <th>First CA</th>
+                            <th>Second CA</th>
+                            <th>Third CA</th>
+                            <th>Exam</th>
+                            <th>Total</th>
+                            <th>Class Average</th>
+                            <th>Highest in Class</th>
+                            <th>Lowest in Class</th>
+                            <th>Position</th>
+                            <th>Grade</th>
+                            <th>Remark</th>
+                        </tr>
+                    </thead>
+                  <tbody>
+                    {% for rs in results %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ rs.subject }}</td>
+                            <td>{{ rs.first_test }}</td>
+                            <td>{{ rs.second_test }}</td>
+                            <td>{{ rs.third_test }}</td>
+                            <td>{{ rs.exam }}</td>
+                            <td>{{ rs.total }}</td>            
+                            <td>{{ rs.class_average }}</td>
+                            <td>{{ rs.highest_in_class }}</td>
+                            <td>{{ rs.lowest_in_class }}</td>
+                            <td>{{ rs.position }}</td>
+                            <td>{{ rs.grade }}</td>
+                            <td>{{ rs.remark }}</td>
+                        </tr>
+                        {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer clearfix">
+                <div class="row">
+          <div class="col-12">
+            <div class="card">
+              
+              <!-- /.card-header -->
+              <div class="card-body  p-0" >
+                <table class="table table-responsive  text-nowrap" style="background-color: #842bd7; color: #fff">
+                  <thead>
+                    
+                  </thead>
+                  <tbody style="margin-bottom: -10px">
+                    <tr>
+                      <td>Form Teacher's Remark: <span class="tag tag-success"> Approved</span></td>                   
+                      <td>Total Number of Day School Open<span class="tag tag-success">114</span></td>
+                    </tr>
+                    <tr>
+                      <td>Number of Day's Present<span class="tag tag-warning">Pending</span></td>
+                      <td>Number of Day's Absent<span class="tag tag-warning">Pending</span></td>
+                    </tr>
+                    <tr>
+                      <td>Tuision Fee<span class="tag tag-primary">Approved</span></td>
+                      <td>Next Term End<span class="tag tag-primary">Approved</span></td>
+                    </tr>
+                    <tr>
+                      
+                      <td>Mark Obtained<span class="tag tag-danger">Denied</span></td>
+                      <td></td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+        <!-- /.row -->
+         <div class="card-header card-primary card-outline" style="background-color: #fff">
+                <h3 class="card-title">INTERPRETATION OF GRADES </h3>
+            </div>
+                
+              
+              
+        <div class="card-body" style="background-color: #fff; color: #000">
+                <table class="table table-bordered table-hover">
+                  <thead>
+                    
+                  </thead>
+                  <tbody>
+                    <tr data-widget="expandable-table" aria-expanded="false">
+                      <td width="30%">80-100 = A (DISTINCTION)</td>
+
+                      <td width="70%">60 - 79 = B (MERIT)</td>
+                    </tr>
+                    <tr data-widget="expandable-table" aria-expanded="false">
+                      <td width="30%">40 - 59 = C (PASS)</td>
+
+                      <td width="70%">0 - 39 = B (FAIL)</td>
+                    </tr>
+                    <tr data-widget="expandable-table"  aria-expanded="false">
+                      <td width="30%" style="padding-top: 50px; padding-bottom: 50px">STAMP AND SIGNATURE</td>
+
+                      <td width="70%" style="padding-top: 50px; padding-bottom: 50px"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+            <!-- /.card -->
+
+{% endblock %}
+
